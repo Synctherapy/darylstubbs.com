@@ -1,0 +1,435 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Paper & ink: warm editorial palette ─────────────────────────── */
+  --color-background: #faf6f1;
+  --color-paper: #ffffff;
+  --color-paper-deep: #f3ece2;
+  --color-paper-tint: #efe6da;
+
+  --color-ink: #16110d;
+  --color-ink-muted: #6b5d52;
+  --color-ink-soft: #9c8d80;
+
+  --color-rule: #ddd0c0;
+  --color-rule-soft: #ebe1d2;
+
+  /* ── Primary — bright orange (energy, warmth, brand) ─────────────── */
+  --color-accent: #ff6442;
+  --color-accent-deep: #d94a26;   /* hover / text on white — AA contrast */
+  --color-accent-soft: #ffdad2;   /* tint for soft backgrounds */
+
+  /* ── Secondary — deep teal (trust, calm, split-complement to orange) */
+  --color-trust: #1f5963;
+  --color-trust-deep: #0e3e47;    /* darker for text on light backgrounds */
+  --color-trust-soft: #cfe0e3;    /* tint for chips / soft panels */
+
+  /* ── Pastel category chips (AA contrast verified) ────────────────── */
+  --color-chip-peach: #ffe5d3;
+  --color-chip-peach-ink: #8a3d12;
+  --color-chip-blue: #d9e7ee;
+  --color-chip-blue-ink: #194755;
+  --color-chip-green: #dbe9d4;
+  --color-chip-green-ink: #2d4a26;
+  --color-chip-sand: #f0e6cd;
+  --color-chip-sand-ink: #5f4a12;
+  --color-chip-neutral: #eae3d6;
+  --color-chip-neutral-ink: #5a4a3a;
+
+  /* ── Section tints (used as soft section backgrounds) ────────────── */
+  --color-tint-peach: #fff1e7;
+  --color-tint-blue: #eaf2f6;
+  --color-tint-green: #ecf3e8;
+  --color-tint-lavender: #efeaf5;
+
+  --color-masthead: #16110d;
+  --color-masthead-ink: #faf6f1;
+  --color-masthead-muted: #a99988;
+
+  /* Legacy aliases kept for compatibility with existing components ── */
+  --color-surface: var(--color-paper);
+  --color-surface-muted: var(--color-paper-deep);
+  --color-surface-strong: var(--color-paper-tint);
+  --color-foreground: var(--color-ink);
+  --color-foreground-muted: var(--color-ink-muted);
+  --color-primary: var(--color-accent-deep);
+  --color-border: var(--color-rule);
+  --color-border-muted: var(--color-rule-soft);
+
+  /* ── Typography ──────────────────────────────────────────────────── */
+  --font-display: var(--font-hanken-grotesk);
+  --font-body: var(--font-hanken-grotesk);
+  --font-mono: var(--font-mono);
+
+  --radius-card: 0.75rem;
+  --radius-pill: 9999px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--color-ink);
+  color: var(--color-background);
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   Editorial primitives
+   ──────────────────────────────────────────────────────────────────── */
+
+/* Display headlines — heavy sans, big and confident */
+.editorial-display {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+
+.editorial-display-italic {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+/* Section heads — bold sans, tightened */
+.editorial-head {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+/* Mono kickers / labels — uppercase, tracked out, bumped up so they're legible */
+.editorial-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink-muted);
+}
+
+.editorial-numeral {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hairline rules — the editorial "vertebrae" of the page */
+.editorial-rule {
+  height: 1px;
+  background-color: var(--color-rule);
+}
+
+.editorial-rule-strong {
+  height: 1px;
+  background-color: var(--color-ink);
+}
+
+/* Top + bottom double-rule wraps a section like a masthead */
+.editorial-section-rule {
+  border-top: 1px solid var(--color-ink);
+  border-bottom: 1px solid var(--color-rule);
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   Buttons — clickable affordance with weight and shadow
+   ──────────────────────────────────────────────────────────────────── */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.005em;
+  padding: 1rem 1.75rem;
+  border-radius: 9999px;
+  background-color: var(--color-accent);
+  color: #ffffff;
+  box-shadow: 0 10px 30px -8px rgba(255, 100, 66, 0.5),
+    0 2px 6px rgba(22, 17, 13, 0.08);
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.btn-primary:hover {
+  background-color: var(--color-accent-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px -10px rgba(255, 100, 66, 0.55),
+    0 4px 12px rgba(22, 17, 13, 0.1);
+}
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.005em;
+  padding: 1rem 1.75rem;
+  border-radius: 9999px;
+  background-color: transparent;
+  color: var(--color-ink);
+  border: 2px solid var(--color-ink);
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+.btn-secondary:hover {
+  background-color: var(--color-ink);
+  color: var(--color-background);
+  transform: translateY(-2px);
+}
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+.btn-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.005em;
+  padding: 1rem 1.75rem;
+  border-radius: 9999px;
+  background-color: var(--color-background);
+  color: var(--color-ink);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.btn-light:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Inline link with editorial underline */
+.link-underline {
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  transition: background-size 0.3s ease;
+}
+.link-underline:hover {
+  background-size: 100% 2px;
+}
+
+/* Drop cap for opening paragraphs */
+.editorial-dropcap::first-letter {
+  font-family: var(--font-display);
+  font-weight: 900;
+  float: left;
+  font-size: 5rem;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  padding: 0.35rem 0.6rem 0 0;
+  color: var(--color-accent-deep);
+}
+
+/* Paper texture overlay — barely-there fibers */
+.paper-grain {
+  position: relative;
+}
+.paper-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.09 0 0 0 0 0.07 0 0 0 0 0.05 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+  mix-blend-mode: multiply;
+  opacity: 0.6;
+  z-index: 1;
+}
+
+/* Subtle vertical column divider — like a printed page gutter */
+.column-divider > * + * {
+  border-left: 1px solid var(--color-rule);
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   Scroll-driven reveals (lightweight, progressive enhancement)
+   ──────────────────────────────────────────────────────────────────── */
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.reveal-up {
+  animation: reveal-up linear both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 35%;
+}
+
+.reveal-scale {
+  animation: reveal-scale linear both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 35%;
+}
+
+.reveal-stagger > * {
+  animation: reveal-up linear both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 40%;
+}
+
+.reveal-stagger > *:nth-child(2) { animation-delay: 60ms; }
+.reveal-stagger > *:nth-child(3) { animation-delay: 120ms; }
+.reveal-stagger > *:nth-child(4) { animation-delay: 180ms; }
+.reveal-stagger > *:nth-child(5) { animation-delay: 240ms; }
+.reveal-stagger > *:nth-child(6) { animation-delay: 300ms; }
+
+/* ────────────────────────────────────────────────────────────────────
+   Prose article styles (used by blog + product pages — keep intact)
+   ──────────────────────────────────────────────────────────────────── */
+
+.prose-article {
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 1.7;
+  color: var(--color-ink);
+}
+
+.prose-article h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.prose-article h3 {
+  font-family: var(--font-display);
+  font-size: 1.625rem;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-article p {
+  margin-bottom: 1.5rem;
+}
+
+.prose-article a {
+  color: var(--color-accent-deep);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.prose-article a:hover {
+  color: var(--color-accent);
+}
+
+.prose-article ul,
+.prose-article ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.prose-article ul {
+  list-style: disc;
+}
+
+.prose-article ol {
+  list-style: decimal;
+}
+
+.prose-article li {
+  margin-bottom: 0.5rem;
+}
+
+.prose-article blockquote {
+  border-left: 3px solid var(--color-trust);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--color-ink);
+}
+
+.prose-article img {
+  border-radius: var(--radius-card);
+  margin: 2rem 0;
+}
+
+.prose-article code {
+  background: var(--color-paper-deep);
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+  font-family: var(--font-mono);
+}
+
+.prose-article hr {
+  border-color: var(--color-rule);
+  margin: 3rem 0;
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   Accessibility: reduced motion
+   ──────────────────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-up,
+  .reveal-scale,
+  .reveal-stagger > * {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

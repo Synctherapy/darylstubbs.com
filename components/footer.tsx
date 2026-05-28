@@ -32,12 +32,12 @@ export function Footer() {
               YouTube
             </a>
             <a
-              href={siteConfig.social.x}
+              href={siteConfig.social.pinterest}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-accent"
             >
-              X
+              Pinterest
             </a>
           </div>
         </div>

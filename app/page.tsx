@@ -432,7 +432,7 @@ export default function HomePage() {
               {[
                 { label: "Instagram", href: siteConfig.social.instagram },
                 { label: "YouTube", href: siteConfig.social.youtube },
-                { label: "X / Twitter", href: siteConfig.social.x },
+                { label: "Pinterest", href: siteConfig.social.pinterest },
               ].map((s) => (
                 <a
                   key={s.label}

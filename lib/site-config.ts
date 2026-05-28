@@ -19,9 +19,9 @@ export const siteConfig = {
     yearsClinical: 10,
   },
   social: {
-    instagram: "https://instagram.com/darylstubbs",
-    youtube: "https://youtube.com/@darylstubbs",
-    x: "https://x.com/darylstubbs",
+    instagram: "https://www.instagram.com/synctherapy/",
+    youtube: "https://www.youtube.com/@synctherapy",
+    pinterest: "https://ca.pinterest.com/SyncTherapyWellness/",
   },
   nav: [
     { label: "Articles", href: "/blog" },
@@ -46,12 +46,12 @@ export const siteConfig = {
       relatedSlugs: ["hydrogen-water", "wellness"],
     },
     {
-      slug: "probiotics",
+      slug: "gut-health",
       label: "Probiotics & Gut Health",
       shortLabel: "Gut Health",
       description:
         "Strains, prebiotics, and the microbiome work that moves the needle on energy and mood.",
-      relatedSlugs: ["probiotics", "gut-health-nutrition"],
+      relatedSlugs: ["probiotics", "gut-health-nutrition", "gut-health"],
     },
   ],
 } as const;

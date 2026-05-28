@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
 type PresetDose = "skin" | "muscle" | "joint" | "custom";
-type PresetPanel = "custom" | "mitopro750" | "rougetabletop" | "kalapro";
+type PresetPanel = "custom" | "mitopro750" | "rougetabletop" | "kalapro" | "infrarediflex" | "biomax900";
 
 export default function RedLightCalculator() {
   // Calculator State
@@ -25,8 +25,10 @@ export default function RedLightCalculator() {
   // Irradiance mapping for presets at 6 inches distance
   const panelPresets: Record<Exclude<PresetPanel, "custom">, number> = {
     mitopro750: 100, // 100 mW/cm² at 6 inches
-    rougetabletop: 120, // 120 mW/cm² at 6 inches
+    rougetabletop: 164, // 164 mW/cm² at 6 inches (from clinical specs)
     kalapro: 85, // 85 mW/cm² at 6 inches
+    infrarediflex: 120, // 120 mW/cm² at 6 inches
+    biomax900: 100, // 100 mW/cm² at 6 inches
   };
 
   // Dose presets in Joules/cm²

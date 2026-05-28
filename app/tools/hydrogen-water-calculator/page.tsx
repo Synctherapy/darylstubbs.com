@@ -290,11 +290,11 @@ export default function HydrogenWaterCalculator() {
                 <span className="text-[10px] font-bold uppercase tracking-wider text-ink-muted block mb-1">
                   Exclusive Clinical Discount Code (10% Off)
                 </span>
-                <span className="text-lg font-mono font-extrabold text-accent">ESAVE10</span>
+                <span className="text-lg font-mono font-extrabold text-accent">SYNCTHERAPY</span>
               </div>
             </div>
             <a
-              href="https://echowater.com/discount/esave10/?redirect=&_ef_transaction_id=&utm_source=everflow&utm_medium=affiliate&utm_campaign=&utm_content=6&oid=6&affid=408"
+              href="https://echowater.com/discount/synctherapy/?redirect=&_ef_transaction_id=&utm_source=everflow&utm_medium=affiliate&utm_campaign=&utm_content=6&oid=6&affid=408"
               target="_blank"
               rel="nofollow noopener"
               className="w-full text-center py-3 bg-accent text-white rounded-xl text-xs font-bold hover:bg-accent-deep transition-all shadow-[0_4px_14px_rgba(255,100,66,0.3)]"

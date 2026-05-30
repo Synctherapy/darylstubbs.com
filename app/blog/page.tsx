@@ -6,6 +6,7 @@ import { CategoryChip } from "@/components/category-chip";
 import { PopularPosts } from "@/components/popular-posts";
 import { SubscribeCard } from "@/components/subscribe-card";
 import { getAllArticles } from "@/lib/articles";
+import { formatDate } from "@/lib/format";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
@@ -66,7 +67,7 @@ export default function BlogIndexPage() {
           <div className="max-w-6xl mx-auto px-6">
             <Link
               href={`/blog/${featured.slug}`}
-              className="group grid md:grid-cols-2 gap-8 md:gap-10 items-center bg-paper rounded-3xl overflow-hidden border border-rule hover:shadow-xl transition-shadow"
+              className="group grid md:grid-cols-2 gap-8 md:gap-10 items-center bg-paper rounded-3xl overflow-hidden border border-rule hover:shadow-xl transition-[box-shadow,transform] duration-200 ease-out active:scale-[0.99] hover:-translate-y-0.5"
             >
               {featured.frontmatter.coverImage && (
                 <div className="relative aspect-[16/10] md:aspect-auto md:h-full md:min-h-[360px] overflow-hidden">
@@ -126,10 +127,53 @@ export default function BlogIndexPage() {
                   <h2 className="editorial-head text-3xl md:text-4xl text-ink mb-8">
                     All articles.
                   </h2>
-                  <div className="grid sm:grid-cols-2 gap-x-8 gap-y-12">
-                    {rest.map((a) => (
-                      <ArticleCard key={a.slug} article={a} />
-                    ))}
+                  <div className="flex flex-col gap-10">
+                    {rest.map((a, idx) => {
+                      const isAlternate = idx % 2 === 0;
+                      return (
+                        <Link
+                          key={a.slug}
+                          href={`/blog/${a.slug}`}
+                          className={`group grid gap-8 items-center border-b border-rule pb-10 transition-[transform,box-shadow] duration-200 active:scale-[0.98] ${
+                            isAlternate ? "md:grid-cols-12" : "md:grid-cols-2"
+                          }`}
+                        >
+                          {a.frontmatter.coverImage && (
+                            <div
+                              className={`relative aspect-[16/10] overflow-hidden rounded-3xl bg-paper-tint shadow-sm group-hover:shadow-md transition-shadow ${
+                                isAlternate ? "md:col-span-6" : ""
+                              }`}
+                            >
+                              <Image
+                                src={a.frontmatter.coverImage}
+                                alt={a.frontmatter.title}
+                                fill
+                                sizes="(max-width: 768px) 100vw, 400px"
+                                className="object-cover group-hover:scale-103 transition-transform duration-700"
+                              />
+                            </div>
+                          )}
+                          <div className={isAlternate ? "md:col-span-6" : ""}>
+                            <div className="mb-3">
+                              <CategoryChip
+                                category={a.frontmatter.category}
+                                size="sm"
+                              />
+                            </div>
+                            <h3 className="editorial-head text-xl md:text-2xl text-ink mb-3 group-hover:text-accent-deep transition-colors leading-tight">
+                              {a.frontmatter.title}
+                            </h3>
+                            <p className="text-base text-ink-muted leading-relaxed mb-5 line-clamp-3">
+                              {a.frontmatter.description}
+                            </p>
+                            <div className="flex items-center justify-between text-sm text-ink-muted font-medium">
+                              <span>{formatDate(a.frontmatter.date)}</span>
+                              <span>{a.readingTime}</span>
+                            </div>
+                          </div>
+                        </Link>
+                      );
+                    })}
                   </div>
                 </>
               )}
@@ -147,7 +191,7 @@ export default function BlogIndexPage() {
                     <li key={cat.slug}>
                       <Link
                         href={`/blog?category=${cat.slug}`}
-                        className="group flex items-center justify-between gap-3 rounded-2xl bg-paper-deep hover:bg-chip-peach px-5 py-3.5 transition-colors"
+                        className="group flex items-center justify-between gap-3 rounded-2xl bg-paper-deep hover:bg-chip-peach px-5 py-3.5 transition-[background-color,transform] duration-150 ease-out active:scale-[0.98]"
                       >
                         <span className="text-sm font-semibold text-ink">
                           {cat.label}

@@ -234,7 +234,7 @@ export default async function ArticlePage({ params }: Props) {
                 <Link
                   key={a.slug}
                   href={`/blog/${a.slug}`}
-                  className="group flex flex-col bg-paper rounded-3xl overflow-hidden border border-rule hover:shadow-lg transition-shadow"
+                  className="group flex flex-col bg-paper rounded-3xl overflow-hidden border border-rule hover:shadow-lg transition-[box-shadow,transform] duration-200 ease-out hover:-translate-y-0.5 active:scale-[0.98] active:translate-y-0"
                 >
                   {a.frontmatter.coverImage && (
                     <div className="relative aspect-[16/10] overflow-hidden">

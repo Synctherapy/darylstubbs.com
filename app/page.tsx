@@ -55,7 +55,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 pt-16 md:pt-24 lg:pt-28 pb-20 lg:pb-28">
             <div className="lg:col-span-8">
-              <h1 className="editorial-display text-[clamp(3.25rem,8.5vw,7.5rem)] text-ink mb-10">
+              <h1 className="editorial-display text-[clamp(3rem,7vw,6rem)] text-ink mb-10 leading-[0.95]">
                 Field notes on what{" "}
                 <span className="editorial-display-italic text-accent-deep">
                   actually
@@ -199,7 +199,7 @@ export default function HomePage() {
                 <Link
                   key={cat.slug}
                   href={`/blog?category=${cat.slug}`}
-                  className="group relative bg-paper rounded-3xl p-8 md:p-10 border border-rule hover:border-accent-deep hover:shadow-lg transition-all"
+                  className="group relative bg-paper rounded-3xl p-8 md:p-10 border border-rule hover:border-accent-deep hover:shadow-lg transition-[border-color,box-shadow,transform] duration-200 ease-out hover:-translate-y-0.5 active:scale-[0.98] active:translate-y-0"
                 >
                   <div className="flex items-baseline justify-between mb-8">
                     <span className="editorial-numeral text-6xl text-accent-deep">
@@ -245,7 +245,7 @@ export default function HomePage() {
             <ScrollReveal>
               <Link
                 href={`/blog/${featuredArticle.slug}`}
-                className="group block"
+                className="group block active:scale-[0.99] transition-transform duration-150 ease-out"
               >
                 <div className="grid md:grid-cols-12 gap-10 md:gap-14 items-center">
                   {featuredArticle.frontmatter.coverImage && (
@@ -388,7 +388,7 @@ export default function HomePage() {
                       <li key={cat.slug}>
                         <Link
                           href={`/blog?category=${cat.slug}`}
-                          className="group flex items-center justify-between gap-3 rounded-2xl bg-paper hover:bg-chip-peach px-5 py-3.5 transition-colors"
+                          className="group flex items-center justify-between gap-3 rounded-2xl bg-paper hover:bg-chip-peach px-5 py-3.5 transition-[background-color,transform] duration-150 ease-out active:scale-[0.98]"
                         >
                           <span className="text-sm font-semibold text-ink">
                             {cat.label}

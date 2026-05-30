@@ -58,18 +58,18 @@ export function TableOfContents({ headings, className = "" }: Props) {
   return (
     <nav className={className} aria-label="Table of contents">
       <div className="editorial-kicker mb-4 text-ink">On this page</div>
-      <ul className="flex flex-col gap-0.5 border-l border-rule">
+      <ul className="flex flex-col gap-1">
         {headings.map((h) => {
           const isActive = h.id === activeId;
-          const indent = h.level === 3 ? "pl-8" : "pl-5";
+          const indent = h.level === 3 ? "pl-6" : "pl-3";
           return (
             <li key={h.id}>
               <a
                 href={`#${h.id}`}
-                className={`block py-2 pr-2 -ml-px border-l-2 text-sm leading-snug transition-colors ${indent} ${
+                className={`block py-2 pr-3 rounded-xl text-sm leading-snug transition-all duration-150 ${indent} ${
                   isActive
-                    ? "border-accent text-accent-deep font-semibold"
-                    : "border-transparent text-ink-muted hover:text-ink"
+                    ? "bg-paper-deep text-accent-deep font-bold translate-x-1"
+                    : "text-ink-muted hover:text-ink hover:translate-x-0.5"
                 }`}
               >
                 {h.text}

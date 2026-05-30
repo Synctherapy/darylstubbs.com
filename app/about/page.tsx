@@ -79,7 +79,7 @@ export default function AboutPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 pt-16 md:pt-24 lg:pt-28 pb-16 items-center">
             <div className="lg:col-span-7 order-2 lg:order-1">
-              <h1 className="editorial-display text-[clamp(3rem,7.5vw,6.5rem)] text-ink mb-10">
+              <h1 className="editorial-display text-[clamp(3rem,7vw,6rem)] text-ink mb-10 leading-[0.95]">
                 Daryl{" "}
                 <span className="editorial-display-italic text-accent-deep">
                   Stubbs.
@@ -207,16 +207,18 @@ export default function AboutPage() {
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-2 gap-x-12 gap-y-14 reveal-stagger">
+          <div className="flex flex-col reveal-stagger">
             {METHODOLOGY.map((step) => (
-              <div key={step.num} className="flex gap-6">
-                <span className="editorial-numeral text-6xl text-accent-deep shrink-0 leading-none">
-                  {step.num}
-                </span>
-                <div>
-                  <h3 className="editorial-head text-2xl text-ink mb-4">
+              <div key={step.num} className="grid md:grid-cols-12 gap-6 py-10 border-b border-rule first:border-t-2 first:border-t-ink last:border-b-2 last:border-b-ink">
+                <div className="md:col-span-5 flex items-baseline gap-6">
+                  <span className="editorial-numeral text-5xl text-accent-deep shrink-0 leading-none">
+                    {step.num}
+                  </span>
+                  <h3 className="editorial-head text-2xl text-ink">
                     {step.title}
                   </h3>
+                </div>
+                <div className="md:col-span-7">
                   <p className="text-lg text-ink-muted leading-relaxed">
                     {step.body}
                   </p>
@@ -248,7 +250,7 @@ export default function AboutPage() {
               <Link
                 key={cat.slug}
                 href={`/blog?category=${cat.slug}`}
-                className="group bg-paper rounded-3xl p-8 md:p-10 border border-rule hover:border-accent-deep hover:shadow-lg transition-all"
+                className="group bg-paper rounded-3xl p-8 md:p-10 border border-rule hover:border-accent-deep hover:shadow-lg transition-[border-color,box-shadow,transform] duration-200 ease-out hover:-translate-y-0.5 active:scale-[0.98] active:translate-y-0"
               >
                 <span className="editorial-numeral text-5xl text-accent-deep block mb-7">
                   {String(i + 1).padStart(2, "0")}
